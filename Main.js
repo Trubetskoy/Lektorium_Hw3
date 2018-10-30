@@ -1,4 +1,4 @@
-let land = [2, 1, 5, 0, 3, 4, 7, 8, 2, 3, 7, 8, 3, 8, 6, 2, 5, 1, 0];
+let land = [2, 1, 5, 0, 3, 4, 7, 2, 3, 1, 8];
 
 
 let volume;
@@ -6,6 +6,8 @@ let leftLand;
 let rightLand;
 let localMax;
 let summVolume = 0;
+let leftMax;
+let rightMax;
 
 function getLastMaxIndex(array) {
     let landMax;
@@ -28,24 +30,34 @@ console.log('lastMaxIndex', getLastMaxIndex(land));
 
 leftLand = land.slice(0, getLastMaxIndex(land) + 1);
 rightLand = land.slice(getLastMaxIndex(land), land.length + 1);
+rightLand.reverse();
 console.log('leftLand', leftLand);
 console.log('rightLand', rightLand);
 
-
-localMax = 0;
+leftMax = 0;
 for (let i = 0; i < leftLand.length; i++) {
-    if (leftLand[i] !== Infinity) {
-        if (localMax < leftLand[i])
-            localMax = leftLand[i];
-        console.log('localMax', localMax);
-
-        if (localMax >= leftLand[i]) {
-            volume = localMax - leftLand[i]
-        }
-        summVolume += volume;
-        console.log('volume', volume);
-        console.log('summVolume', summVolume)
+    if (leftMax < leftLand[i])
+        leftMax = leftLand[i];
+    console.log('localMax', leftMax);
+    if (leftMax >= leftLand[i]) {
+        volume = leftMax - leftLand[i]
     }
+    summVolume += volume;
 
 }
+console.log('LeftVolume', summVolume);
 
+rightMax = 0;
+for (let i = 0; i < rightLand.length; i++) {
+    if (rightMax < rightLand[i]) {
+        rightMax = rightLand[i]
+    }
+    console.log('rightMax', rightMax);
+    if (rightMax >= rightLand[i]) {
+        volume = rightMax - rightLand[i]
+    }
+    summVolume += volume;
+
+
+}
+console.log('summVolume', summVolume);
