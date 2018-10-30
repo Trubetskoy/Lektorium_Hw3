@@ -3,23 +3,20 @@ function countingMountRainVolume(land) {
     let leftLand;
     let rightLand;
     let summVolume = 0;
-    let leftMax;
-    let rightMax;
+    let leftMax = 0;
+    let rightMax = 0;
 
     function getLastMaxIndex(array) {
         let landMax;
         let maxArrayIndex = [];
         let lastMaxIndex;
-
         landMax = (Math.max(...array));
-
         array.forEach(function (item, index) {
             if (item === landMax) {
                 maxArrayIndex.push(index)
             }
         });
         lastMaxIndex = maxArrayIndex[maxArrayIndex.length - 1];
-
         return lastMaxIndex
     }
 
@@ -27,7 +24,6 @@ function countingMountRainVolume(land) {
     rightLand = land.slice(getLastMaxIndex(land), land.length + 1);
     rightLand.reverse();
 
-    leftMax = 0;
     for (let i = 0; i < leftLand.length; i++) {
         if (leftMax < leftLand[i]) {
             leftMax = leftLand[i]
@@ -38,7 +34,6 @@ function countingMountRainVolume(land) {
         summVolume += volume;
     }
 
-    rightMax = 0;
     for (let i = 0; i < rightLand.length; i++) {
         if (rightMax < rightLand[i]) {
             rightMax = rightLand[i]
